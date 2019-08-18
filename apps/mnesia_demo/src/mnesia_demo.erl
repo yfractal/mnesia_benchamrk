@@ -3,15 +3,15 @@
 -behaviour(gen_server).
 
 %% API
--export([start_link/0]).
+-export([start_link/0,
+         create_table/0,
+         write/1,
+         write/2,
+         find/2]).
 
 %% gen_server callbacks
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2,
          terminate/2, code_change/3]).
-
--export([create_table/0,
-         write/2,
-         find/2]).
 
 -define(SERVER, ?MODULE).
 
@@ -24,6 +24,9 @@ start_link() ->
 
 create_table() ->
     do_create_table().
+
+write({Id, Name}) ->
+    do_write(Id, Name).
 
 write(Pid, {Id, Name}) ->
     gen_server:call(Pid, {write, Id, Name}).
