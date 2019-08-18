@@ -1,0 +1,6 @@
+-sname mnesia_demo
+
+-setcookie mnesia_demo_cookie
+
++K true
++A30
